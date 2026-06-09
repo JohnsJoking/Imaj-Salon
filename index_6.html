@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Imaj Hair Salon | Washington, DC</title>
+<meta name="description" content="Imaj Hair Salon — a full service beauty salon on Connecticut Avenue NW, Washington DC. Hair, nails, color, and treatments since 2006.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold: #c9a96e;
+  --gold-light: #e8d5b0;
+  --gold-dark: #9a7a48;
+  --black: #0f0e0c;
+  --off-black: #1a1916;
+  --charcoal: #2c2a26;
+  --warm-gray: #6b6760;
+  --light-warm: #f5f2ec;
+  --cream: #faf8f4;
+  --white: #ffffff;
+  --nav-h: 68px;
+  --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--black);
+  overflow-x: hidden;
+}
+
+/* ── NAV ─────────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5vw;
+  transition: background 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+nav.scrolled {
+  background: rgba(15,14,12,0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 rgba(201,169,110,0.18);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.55rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: opacity 0.3s;
+}
+.nav-logo:hover { opacity: 0.75; }
+.nav-logo-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(201,169,110,0.6);
+  margin-left: 0.5rem;
+  vertical-align: middle;
+  position: relative;
+  top: -0.05em;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-book {
+  font-size: 0.7rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.12em !important;
+  color: var(--black) !important;
+  background: var(--gold);
+  padding: 0.5rem 1.3rem !important;
+  border-radius: 2px;
+  transition: background 0.3s, transform 0.3s !important;
+}
+.nav-book:hover { background: var(--gold-light) !important; transform: translateY(-1px) !important; }
+
+/* hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 8px;
+  z-index: 201;
+}
+.hamburger span {
+  display: block; width: 22px; height: 1.5px;
+  background: var(--gold);
+  transition: transform 0.4s var(--ease), opacity 0.3s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* mobile overlay menu */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--off-black);
+  z-index: 199;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  opacity: 0;
+  transition: opacity 0.35s var(--ease);
+}
+.mobile-menu.open { display: flex; opacity: 1; }
+.mob-link {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 8vw, 2.8rem);
+  font-weight: 300;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(201,169,110,0.08);
+  width: 70%;
+  text-align: center;
+  transition: color 0.3s;
+}
+.mob-link:last-of-type { border-bottom: none; }
+.mob-link:hover { color: var(--gold); }
+.mob-call {
+  margin-top: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2.2rem;
+  background: var(--gold);
+  color: var(--black);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+}
+.mob-social {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.mob-social a {
+  width: 38px; height: 38px;
+  border: 1px solid rgba(201,169,110,0.25);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.mob-social svg { width: 14px; height: 14px; fill: rgba(255,255,255,0.45); }
+
+/* ── HERO ────────────────────────────────────────── */
+#hero {
+  height: 100svh;
+  min-height: 600px;
+  background: var(--off-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 55%, rgba(201,169,110,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 15% 15%, rgba(201,169,110,0.04) 0%, transparent 60%);
+}
+.hero-svg-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+/* The thin vertical gold line */
+.hero-line {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1px;
+  height: 0;
+  background: linear-gradient(to bottom, transparent, rgba(201,169,110,0.28), transparent);
+  animation: lineGrow 1.4s 0.2s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+@keyframes lineGrow { to { height: 360px; } }
+
+.hero-content {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 1.4rem;
+  overflow: visible;
+}
+.hero-eyebrow {
+  font-size: 0.68rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0;
+  animation: fadeUp 0.9s 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+
+/* ── IMAJ letter-by-letter animation ── */
+.hero-wordmark {
+  display: flex;
+  align-items: baseline;
+  gap: 0.02em;
+  overflow: visible;
+  padding-bottom: 0.2em;
+}
+.hero-wordmark .letter {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(5rem, 16vw, 11rem);
+  font-weight: 300;
+  line-height: 1;
+  color: var(--white);
+  letter-spacing: 0.05em;
+  display: inline-block;
+  overflow: visible;
+  opacity: 0;
+  transform: translateY(60px) scaleY(0.85);
+  transform-origin: bottom center;
+}
+.hero-wordmark .letter.animate {
+  animation: letterRise 1s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-wordmark .letter:nth-child(1) { animation-delay: 0.65s; }
+.hero-wordmark .letter:nth-child(2) { animation-delay: 0.78s; }
+.hero-wordmark .letter:nth-child(3) { animation-delay: 0.91s; }
+.hero-wordmark .letter:nth-child(4) { animation-delay: 1.04s; }
+@keyframes letterRise {
+  0%   { opacity: 0; transform: translateY(60px) scaleY(0.85); }
+  60%  { opacity: 1; }
+  100% { opacity: 1; transform: translateY(0) scaleY(1); }
+}
+
+.hero-sub {
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.38);
+  opacity: 0;
+  animation: fadeUp 0.8s 1.2s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-cta {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  justify-content: center; margin-top: 0.75rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 1.35s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.btn-primary {
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  background: var(--gold);
+  color: var(--black);
+  font-size: 0.7rem; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  text-decoration: none; border-radius: 2px;
+  transition: background 0.3s, transform 0.3s;
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+.btn-outline {
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  border: 1px solid rgba(201,169,110,0.38);
+  color: var(--gold);
+  font-size: 0.7rem; font-weight: 400;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  text-decoration: none; border-radius: 2px;
+  transition: border-color 0.3s, color 0.3s, transform 0.3s;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--white); transform: translateY(-2px); }
+
+/* scroll indicator */
+.hero-scroll {
+  position: absolute; bottom: 2rem; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column;
+  align-items: center; gap: 0.5rem;
+  opacity: 0;
+  animation: fadeIn 1s 1.8s forwards;
+}
+.hero-scroll span {
+  font-size: 0.58rem; letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+}
+.scroll-dot {
+  width: 1px; height: 44px;
+  background: linear-gradient(to bottom, rgba(201,169,110,0.55), transparent);
+  animation: scrollPulse 2.2s 1.8s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.35; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.08); }
+}
+
+/* ── ABOUT ───────────────────────────────────────── */
+#about {
+  background: var(--white);
+  padding: 8rem 5vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+.about-visual { position: relative; }
+.about-frame {
+  width: 100%; aspect-ratio: 3/4;
+  background: var(--light-warm);
+  border-radius: 4px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.about-frame-inner {
+  width: calc(100% - 2.5rem); height: calc(100% - 2.5rem);
+  border: 1px solid rgba(201,169,110,0.22);
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 1rem;
+}
+.about-frame-inner svg { opacity: 0.25; }
+.about-frame-inner p {
+  font-size: 0.68rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--warm-gray); text-align: center;
+}
+.about-year {
+  position: absolute; bottom: -1rem; right: -1rem;
+  width: 5.5rem; height: 5.5rem;
+  background: var(--gold); border-radius: 50%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.about-year strong {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 600;
+  color: var(--black); line-height: 1;
+}
+.about-year span {
+  font-size: 0.52rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--charcoal);
+}
+.about-text { display: flex; flex-direction: column; gap: 1.4rem; }
+.about-text p { font-size: 1rem; line-height: 1.85; color: var(--warm-gray); }
+.about-stats {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1.5rem; padding-top: 1rem;
+  border-top: 1px solid rgba(201,169,110,0.18); margin-top: 0.5rem;
+}
+.stat-item strong {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem; font-weight: 300;
+  color: var(--gold); line-height: 1;
+}
+.stat-item span {
+  font-size: 0.62rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--warm-gray);
+}
+
+/* ── SERVICES ────────────────────────────────────── */
+#services {
+  background: var(--off-black);
+  padding: 7rem 5vw;
+}
+#services .section-title { color: var(--white); }
+.services-header {
+  display: flex; justify-content: space-between;
+  align-items: flex-end; margin-bottom: 3rem;
+  flex-wrap: wrap; gap: 1.5rem;
+}
+.services-tabs {
+  display: flex; gap: 0.4rem; flex-wrap: wrap;
+}
+.tab-btn {
+  padding: 0.45rem 1rem;
+  border: 1px solid rgba(201,169,110,0.22);
+  background: none;
+  color: rgba(255,255,255,0.45);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.68rem; letter-spacing: 0.12em;
+  text-transform: uppercase; cursor: pointer;
+  border-radius: 2px;
+  transition: border-color 0.3s, color 0.3s, background 0.3s;
+  -webkit-tap-highlight-color: transparent;
+}
+.tab-btn.active, .tab-btn:hover {
+  border-color: var(--gold); color: var(--gold);
+  background: rgba(201,169,110,0.07);
+}
+.services-grid {
+  border: 1px solid rgba(201,169,110,0.14);
+  border-radius: 3px; overflow: hidden;
+}
+.service-panel { display: none; }
+.service-panel.active { display: block; }
+.service-card {
+  background: var(--off-black);
+  padding: 1.15rem 1.6rem;
+  display: flex; justify-content: space-between;
+  align-items: center; gap: 1rem;
+  border-bottom: 1px solid rgba(201,169,110,0.08);
+  transition: background 0.25s;
+}
+.service-card:last-child { border-bottom: none; }
+.service-card:hover { background: rgba(201,169,110,0.05); }
+.service-name {
+  font-size: 0.9rem; font-weight: 300;
+  color: rgba(255,255,255,0.82); line-height: 1.4;
+}
+.service-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem; font-weight: 300;
+  color: var(--gold); white-space: nowrap;
+}
+
+/* ── TESTIMONIALS ────────────────────────────────── */
+#testimonials {
+  background: var(--light-warm);
+  padding: 7rem 5vw; text-align: center;
+}
+#testimonials .section-label { display: flex; justify-content: center; }
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+  gap: 1.25rem; margin-top: 3.5rem;
+}
+.testimonial-card {
+  background: var(--white);
+  border: 1px solid rgba(201,169,110,0.12);
+  border-radius: 4px; padding: 2rem;
+  text-align: left; position: relative;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.06); }
+.testimonial-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem; line-height: 1;
+  color: var(--gold-light);
+  position: absolute; top: 1rem; left: 1.5rem;
+}
+.testimonial-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.08rem; font-style: italic;
+  line-height: 1.8; color: var(--charcoal);
+  margin-top: 1.5rem;
+}
+.testimonial-author {
+  margin-top: 1.2rem; font-size: 0.62rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--warm-gray);
+  border-top: 1px solid rgba(201,169,110,0.18);
+  padding-top: 1rem;
+}
+
+/* ── REVIEW CTA ──────────────────────────────────── */
+.review-cta {
+  background: var(--light-warm);
+  padding: 3rem 5vw;
+  display: flex;
+  justify-content: center;
+}
+.review-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2.2rem;
+  background: var(--white);
+  border: 1px solid rgba(201,169,110,0.3);
+  border-radius: 3px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--charcoal);
+  text-decoration: none;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+.review-btn:hover {
+  border-color: var(--gold);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  transform: translateY(-2px);
+  color: var(--black);
+}
+
+/* ── CONTACT ─────────────────────────────────────── */
+#contact {
+  background: var(--white);
+  padding: 7rem 5vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem; align-items: start;
+}
+.contact-info { display: flex; flex-direction: column; gap: 2rem; }
+.contact-detail { display: flex; gap: 1rem; align-items: flex-start; }
+.contact-icon {
+  width: 36px; height: 36px; flex-shrink: 0;
+  border: 1px solid rgba(201,169,110,0.28);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 2px;
+}
+.contact-icon svg { width: 14px; height: 14px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+.contact-detail h4 {
+  font-size: 0.62rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem;
+}
+.contact-detail p, .contact-detail a {
+  font-size: 0.9rem; color: var(--charcoal);
+  line-height: 1.7; text-decoration: none;
+}
+.contact-detail a:hover { color: var(--gold-dark); }
+.hours-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0.3rem 2rem; margin-top: 0.5rem;
+}
+.hours-row {
+  display: flex; justify-content: space-between;
+  font-size: 0.85rem; color: var(--warm-gray);
+  padding: 0.25rem 0;
+  border-bottom: 1px solid rgba(201,169,110,0.1);
+}
+.hours-row span:first-child { color: var(--charcoal); }
+.contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-group label {
+  font-size: 0.62rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--warm-gray);
+}
+.form-group input, .form-group textarea {
+  background: var(--light-warm);
+  border: 1px solid rgba(201,169,110,0.14);
+  border-radius: 2px; padding: 0.8rem 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem; color: var(--black);
+  outline: none; width: 100%; resize: none;
+  transition: border-color 0.3s;
+  -webkit-appearance: none;
+}
+.form-group input:focus, .form-group textarea:focus { border-color: var(--gold); }
+.form-group textarea { min-height: 110px; }
+.form-submit {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  background: var(--gold); color: var(--black);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  border: none; border-radius: 2px;
+  cursor: pointer; align-self: flex-start;
+  transition: background 0.3s, transform 0.3s;
+  -webkit-tap-highlight-color: transparent;
+}
+.form-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+/* ── FOOTER ──────────────────────────────────────── */
+footer {
+  background: var(--black);
+  padding: 3rem 5vw;
+  display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 1.5rem;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem; font-weight: 300;
+  letter-spacing: 0.22em; color: var(--gold);
+  text-decoration: none; text-transform: uppercase;
+}
+.footer-links {
+  display: flex; gap: 2rem; list-style: none; flex-wrap: wrap;
+}
+.footer-links a {
+  font-size: 0.68rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255,255,255,0.35);
+  text-decoration: none; transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--gold); }
+.footer-copy { font-size: 0.68rem; color: rgba(255,255,255,0.22); }
+.social-links { display: flex; gap: 0.75rem; }
+.social-links a {
+  width: 34px; height: 34px;
+  border: 1px solid rgba(201,169,110,0.18);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.3s, background 0.3s;
+}
+.social-links a:hover { border-color: var(--gold); background: rgba(201,169,110,0.1); }
+.social-links svg { width: 13px; height: 13px; fill: rgba(255,255,255,0.45); transition: fill 0.3s; }
+.social-links a:hover svg { fill: var(--gold); }
+
+/* ── SHARED REVEAL UTILITY ───────────────────────── */
+.section-label {
+  font-size: 0.64rem; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 0.85rem;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem,5vw,3.4rem);
+  font-weight: 300; line-height: 1.15; color: var(--off-black);
+}
+.section-title em { font-style: italic; }
+
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ── MOBILE ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  :root { --nav-h: 60px; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+
+  #about {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 5rem 6vw 4rem;
+  }
+  .about-visual { display: none; }
+  .about-stats { grid-template-columns: repeat(3,1fr); gap: 1rem; }
+  .stat-item strong { font-size: 1.8rem; }
+
+  #services { padding: 4.5rem 6vw; }
+  .services-header { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+  .services-tabs { gap: 0.35rem; }
+  .tab-btn { font-size: 0.65rem; padding: 0.4rem 0.85rem; }
+  .service-card { padding: 1rem 1.2rem; }
+  .service-name { font-size: 0.88rem; }
+
+  #testimonials { padding: 4.5rem 6vw; }
+  .testimonials-grid { grid-template-columns: 1fr; gap: 1rem; }
+
+  #contact {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 4.5rem 6vw;
+  }
+  .form-row { grid-template-columns: 1fr; }
+  .hours-grid { grid-template-columns: 1fr; }
+  .form-submit { width: 100%; justify-content: center; }
+
+  footer {
+    flex-direction: column; text-align: center;
+    align-items: center; padding: 2.5rem 6vw;
+    gap: 1.25rem;
+  }
+  .footer-links { justify-content: center; gap: 1.25rem; }
+
+  /* hero mobile tweaks */
+  .hero-wordmark .letter {
+    font-size: clamp(4rem, 18vw, 7rem);
+  }
+  .hero-cta {
+    flex-direction: column; align-items: center; gap: 0.75rem;
+  }
+  .btn-primary, .btn-outline {
+    width: 100%; max-width: 300px; text-align: center;
+    padding: 1rem 1.5rem; font-size: 0.68rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero-wordmark .letter { font-size: clamp(3.5rem, 20vw, 5.5rem); }
+  .about-stats { gap: 0.6rem; }
+  .stat-item strong { font-size: 1.5rem; }
+  .stat-item span { font-size: 0.55rem; }
+}
+
+/* touch: bigger tap targets on mobile */
+@media (hover: none) {
+  .service-card { padding: 1.2rem 1.4rem; }
+  .tab-btn { min-height: 40px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Imaj <span class="nav-logo-sub">Hair Salon</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="tel:+12029667979" class="nav-book">Call to Book</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <a href="#about" class="mob-link">About</a>
+  <a href="#services" class="mob-link">Services</a>
+  <a href="#testimonials" class="mob-link">Reviews</a>
+  <a href="#contact" class="mob-link">Contact</a>
+  <a href="tel:+12029667979" class="mob-call">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+    (202) 966-7979
+  </a>
+  <div class="mob-social">
+    <a href="https://www.instagram.com/imajsalondc/" target="_blank" aria-label="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+    </a>
+    <a href="https://www.yelp.com/biz/imaj-hair-salon-washington" target="_blank" aria-label="Yelp">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.5 14.5c-.4.7-1.1 1.1-1.9 1.1-.4 0-.8-.1-1.1-.3l-2.1-1.4c-.3-.2-.4-.6-.2-.9.2-.3.6-.4.9-.2l.6.4V9.5c0-.4.3-.7.7-.7s.7.3.7.7v3.8l1.8-1c.3-.2.7-.1.9.2.5.7.2 1.5-.3 2.5z"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <!-- decorative SVG background -->
+  <svg class="hero-svg-bg" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!-- flowing hair strand curves -->
+    <g opacity="0.07" stroke="#c9a96e" stroke-width="1" fill="none">
+      <!-- large flowing strands -->
+      <path d="M-50 200 C100 150, 200 300, 350 250 S550 100, 700 200 S900 350, 1100 280 S1300 150, 1400 200"/>
+      <path d="M-50 280 C80 220, 220 370, 380 310 S580 160, 730 260 S940 410, 1140 330 S1320 200, 1450 260"/>
+      <path d="M-50 360 C120 290, 260 440, 420 370 S610 210, 760 320 S970 470, 1180 380 S1360 240, 1450 310"/>
+      <path d="M-50 440 C150 360, 300 500, 460 430 S650 270, 800 370 S1000 520, 1200 430"/>
+      <path d="M-50 150 C60 100, 160 230, 280 190 S460 70, 600 160 S800 300, 980 220 S1200 100, 1350 160"/>
+      <path d="M-50 520 C100 460, 240 570, 380 510 S580 380, 720 450 S930 570, 1100 490 S1300 380, 1450 440"/>
+      <!-- finer strands -->
+      <path d="M200 -20 C220 80, 180 200, 240 310 S340 450, 300 570 S260 650, 280 720" stroke-width="0.7"/>
+      <path d="M400 -20 C430 90, 380 210, 450 330 S560 470, 510 590" stroke-width="0.7"/>
+      <path d="M650 -20 C680 100, 620 240, 700 360 S810 490, 760 610" stroke-width="0.7"/>
+      <path d="M900 -20 C920 110, 860 260, 940 390 S1050 510, 990 630" stroke-width="0.7"/>
+      <path d="M1100 -20 C1120 100, 1060 250, 1130 370 S1230 490, 1180 610" stroke-width="0.7"/>
+    </g>
+    <!-- scissors — top left -->
+    <g transform="translate(80, 60) rotate(-30)" opacity="0.1" stroke="#c9a96e" stroke-width="1.2" fill="none">
+      <!-- blade 1 -->
+      <line x1="20" y1="0" x2="0" y2="60"/>
+      <circle cx="20" cy="0" r="7"/>
+      <!-- blade 2 -->
+      <line x1="20" y1="0" x2="40" y2="60"/>
+      <circle cx="20" cy="0" r="4" fill="rgba(201,169,110,0.2)"/>
+      <!-- handle loops -->
+      <ellipse cx="0" cy="60" rx="8" ry="10"/>
+      <ellipse cx="40" cy="60" rx="8" ry="10"/>
+    </g>
+    <!-- scissors — bottom right -->
+    <g transform="translate(1080, 580) rotate(20)" opacity="0.09" stroke="#c9a96e" stroke-width="1.2" fill="none">
+      <line x1="20" y1="0" x2="0" y2="60"/>
+      <circle cx="20" cy="0" r="7"/>
+      <line x1="20" y1="0" x2="40" y2="60"/>
+      <circle cx="20" cy="0" r="4" fill="rgba(201,169,110,0.15)"/>
+      <ellipse cx="0" cy="60" rx="8" ry="10"/>
+      <ellipse cx="40" cy="60" rx="8" ry="10"/>
+    </g>
+    <!-- comb — top right -->
+    <g transform="translate(1050, 40) rotate(15)" opacity="0.08" stroke="#c9a96e" stroke-width="1" fill="none">
+      <rect x="0" y="0" width="60" height="12" rx="2"/>
+      <line x1="5"  y1="12" x2="5"  y2="30"/>
+      <line x1="11" y1="12" x2="11" y2="30"/>
+      <line x1="17" y1="12" x2="17" y2="30"/>
+      <line x1="23" y1="12" x2="23" y2="30"/>
+      <line x1="29" y1="12" x2="29" y2="30"/>
+      <line x1="35" y1="12" x2="35" y2="30"/>
+      <line x1="41" y1="12" x2="41" y2="30"/>
+      <line x1="47" y1="12" x2="47" y2="30"/>
+      <line x1="53" y1="12" x2="53" y2="30"/>
+    </g>
+    <!-- comb — bottom left -->
+    <g transform="translate(60, 580) rotate(-10)" opacity="0.07" stroke="#c9a96e" stroke-width="1" fill="none">
+      <rect x="0" y="0" width="60" height="12" rx="2"/>
+      <line x1="5"  y1="12" x2="5"  y2="30"/>
+      <line x1="11" y1="12" x2="11" y2="30"/>
+      <line x1="17" y1="12" x2="17" y2="30"/>
+      <line x1="23" y1="12" x2="23" y2="30"/>
+      <line x1="29" y1="12" x2="29" y2="30"/>
+      <line x1="35" y1="12" x2="35" y2="30"/>
+      <line x1="41" y1="12" x2="41" y2="30"/>
+      <line x1="47" y1="12" x2="47" y2="30"/>
+      <line x1="53" y1="12" x2="53" y2="30"/>
+    </g>
+    <!-- subtle radial glow center -->
+    <radialGradient id="heroGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#c9a96e" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#c9a96e" stop-opacity="0"/>
+    </radialGradient>
+    <rect width="1200" height="700" fill="url(#heroGlow)"/>
+  </svg>
+  <div class="hero-line"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Washington, DC &nbsp;·&nbsp; Since 2006</p>
+    <div class="hero-wordmark" aria-label="Imaj">
+      <span class="letter animate">I</span>
+      <span class="letter animate">m</span>
+      <span class="letter animate">a</span>
+      <span class="letter animate">j</span>
+    </div>
+    <p class="hero-sub">3301 Connecticut Ave NW &nbsp;·&nbsp; Washington, DC 20008</p>
+    <div class="hero-cta">
+      <a href="tel:+12029667979" class="btn-primary">(202) 966-7979 &nbsp;·&nbsp; Call to Book</a>
+      <a href="#services" class="btn-outline">View Services</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-dot"></div>
+  </div>
+</section>
+
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual reveal">
+    <div class="about-frame">
+      <div class="about-frame-inner">
+        <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="#c9a96e" stroke-width="1">
+          <path d="M24 4 C14 4 10 12 10 20 C10 30 16 36 24 44 C32 36 38 30 38 20 C38 12 34 4 24 4Z"/>
+          <line x1="24" y1="4" x2="24" y2="44"/>
+          <path d="M10 20 Q24 16 38 20"/>
+        </svg>
+        <img src="salon.jpg" alt="Imaj Hair Salon" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+    </div>
+    <div class="about-year"><strong>19</strong><span>Years</span></div>
+  </div>
+  <div class="about-text reveal reveal-delay-1">
+    <p class="section-label">Our Story</p>
+    <h2 class="section-title">A Beautiful<br><em>Experience</em></h2>
+    <p>Imaj Hair Salon is a full service beauty salon that opened in 2006 on Connecticut Avenue, just a block from Cleveland Park Metro. Our owners take pride in delivering exceptional, high quality hair and nail services in a welcoming environment.</p>
+    <p>Our stylists and beauticians are trained, certified, and highly experienced. Since our focus is beauty, we feel responsible for making every client feel and look their absolute best — every visit.</p>
+    <div class="about-stats">
+      <div class="stat-item"><strong>19+</strong><span>Years Open</span></div>
+      <div class="stat-item"><strong>100+</strong><span>5-Star Reviews</span></div>
+      <div class="stat-item"><strong>Full</strong><span>Service Salon</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <div>
+      <p class="section-label">What We Offer</p>
+      <h2 class="section-title" style="color:var(--white);">Our <em>Services</em></h2>
+    </div>
+    <div class="services-tabs">
+      <button class="tab-btn active" data-tab="cuts">Cuts &amp; Style</button>
+      <button class="tab-btn" data-tab="treatments">Treatments</button>
+      <button class="tab-btn" data-tab="color">Color</button>
+      <button class="tab-btn" data-tab="nails">Nails</button>
+    </div>
+  </div>
+  <div class="services-grid reveal reveal-delay-1">
+    <div class="service-panel active" id="tab-cuts">
+      <div class="service-card"><span class="service-name">Blow Dry</span><span class="service-price">$50+</span></div>
+      <div class="service-card"><span class="service-name">Women's Haircut</span><span class="service-price">$80+</span></div>
+      <div class="service-card"><span class="service-name">Women's Haircut &amp; Blow Dry</span><span class="service-price">$100+</span></div>
+      <div class="service-card"><span class="service-name">Men's Haircut</span><span class="service-price">$50+</span></div>
+      <div class="service-card"><span class="service-name">Kids Haircut (6 &amp; Under)</span><span class="service-price">$45+</span></div>
+      <div class="service-card"><span class="service-name">Evening Style Updo</span><span class="service-price">$90+</span></div>
+      <div class="service-card"><span class="service-name">Wedding Updo</span><span class="service-price">$150+</span></div>
+    </div>
+    <div class="service-panel" id="tab-treatments">
+      <div class="service-card"><span class="service-name">Relaxer</span><span class="service-price">$150+</span></div>
+      <div class="service-card"><span class="service-name">Deep Conditioner Treatment</span><span class="service-price">$50+</span></div>
+      <div class="service-card"><span class="service-name">Brazilian Blow Out</span><span class="service-price">$350+</span></div>
+      <div class="service-card"><span class="service-name">Perm</span><span class="service-price">$125+</span></div>
+      <div class="service-card"><span class="service-name">Keratin Express Blowout</span><span class="service-price">$150+</span></div>
+      <div class="service-card"><span class="service-name">Keratin Smoothing Treatment</span><span class="service-price">$350+</span></div>
+    </div>
+    <div class="service-panel" id="tab-color">
+      <div class="service-card"><span class="service-name">One Process Color</span><span class="service-price">$110</span></div>
+      <div class="service-card"><span class="service-name">Double Process Color</span><span class="service-price">$120+</span></div>
+      <div class="service-card"><span class="service-name">INOA Ammonia Free</span><span class="service-price">$125+</span></div>
+      <div class="service-card"><span class="service-name">Partial Highlights</span><span class="service-price">$150+</span></div>
+      <div class="service-card"><span class="service-name">Full Highlights</span><span class="service-price">$180+</span></div>
+      <div class="service-card"><span class="service-name">Low Lights</span><span class="service-price">$150+</span></div>
+      <div class="service-card"><span class="service-name">Ombré &amp; Balayage</span><span class="service-price">$170+</span></div>
+      <div class="service-card"><span class="service-name">Color Rinse / Semi-Permanent</span><span class="service-price">$80+</span></div>
+      <div class="service-card"><span class="service-name">Color Correction</span><span class="service-price">Consultation</span></div>
+    </div>
+    <div class="service-panel" id="tab-nails">
+      <div class="service-card"><span class="service-name">Manicure</span><span class="service-price">$35</span></div>
+      <div class="service-card"><span class="service-name">Pedicure</span><span class="service-price">$55</span></div>
+      <div class="service-card"><span class="service-name">Polish Change</span><span class="service-price">$15</span></div>
+      <div class="service-card"><span class="service-name">Polish Change (Toes)</span><span class="service-price">$20</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <p class="section-label reveal">Client Stories</p>
+  <h2 class="section-title reveal reveal-delay-1">What Our <em>Clients Say</em></h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">Wonderful experience at Imaj Hair Salon. Great customer service, very friendly people, and amazing styles!</p>
+      <p class="testimonial-author">Jessica B. &nbsp;·&nbsp; Client</p>
+    </div>
+    <div class="testimonial-card reveal reveal-delay-1">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">Best salon in town! If you live in the DC area you must check them out. They're really the best at what they do — I'm always satisfied leaving their door.</p>
+      <p class="testimonial-author">Charlotte S. &nbsp;·&nbsp; Client</p>
+    </div>
+    <div class="testimonial-card reveal reveal-delay-2">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">Great place and service. Recep does my hair every month — my hair is hard to handle but he does an awesome job every time.</p>
+      <p class="testimonial-author">Carolina N. &nbsp;·&nbsp; Client</p>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEW CTA -->
+<div class="review-cta reveal">
+  <a href="https://www.google.com/search?q=imaj+hair+salon+dc&oq=imaj+hair+&gs_lcrp=EgZjaHJvbWUqDwgAECMYJxjjAhiABBiKBTIPCAAQIxgnGOMCGIAEGIoFMhUIARAuGCcYrwEYxwEYgAQYigUYjgUyCggCEEUYFhgeGDkyDAgDEAAYQxiABBiKBTINCAQQLhivARjHARiABDIGCAUQRRg8MgYIBhBFGD0yBggHEEUYPdIBCDMzNzNqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8#lrd=0x89b7c9d4ae253bd7:0xf68aaba6adc733d8,3,,,," target="_blank" rel="noopener" class="review-btn">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+    </svg>
+    Leave Us a Review on Google
+  </a>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-info reveal">
+    <div>
+      <p class="section-label">Find Us</p>
+      <h2 class="section-title">Visit <em>The Salon</em></h2>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      </div>
+      <div>
+        <h4>Address</h4>
+        <p>3301 Connecticut Ave NW<br>Washington, DC 20008</p>
+        <p style="margin-top:0.35rem;font-size:0.75rem;color:var(--warm-gray);">One block from Cleveland Park Metro</p>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      </div>
+      <div>
+        <h4>Phone</h4>
+        <a href="tel:+12029667979">(202) 966-7979</a>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </div>
+      <div>
+        <h4>Email</h4>
+        <a href="mailto:imajsalon@gmail.com">imajsalon@gmail.com</a>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <div class="hours-grid" style="margin-top:0.5rem;">
+          <div class="hours-row"><span>Mon – Fri</span><span>9am – 7pm</span></div>
+          <div class="hours-row"><span>Saturday</span><span>9am – 6pm</span></div>
+          <div class="hours-row"><span>Sunday</span><span>By Appt.</span></div>
+        </div>
+        <p style="font-size:0.68rem;color:var(--warm-gray);margin-top:0.5rem;">* Hours may vary — call to confirm</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-form reveal reveal-delay-2">
+    <div>
+      <p class="section-label">Get In Touch</p>
+      <h2 class="section-title">Send Us a <em>Message</em></h2>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="fname" placeholder="Jane" autocomplete="given-name">
+      </div>
+      <div class="form-group">
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" name="lname" placeholder="Smith" autocomplete="family-name">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="jane@example.com" autocomplete="email">
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone (Optional)</label>
+      <input type="tel" id="phone" name="phone" placeholder="(202) 000-0000" autocomplete="tel">
+    </div>
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" placeholder="Tell us how we can help…"></textarea>
+    </div>
+    <button type="button" class="form-submit" onclick="handleSubmit()">
+      Send Message
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
+    <p id="form-success" style="display:none;font-size:0.85rem;color:#5a8a5a;margin-top:0.5rem;">✓ Message sent! We'll be in touch soon.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#hero" class="footer-logo">Imaj Salon</a>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="tel:+12029667979">Call to Book</a></li>
+  </ul>
+  <div class="social-links">
+    <a href="https://www.instagram.com/imajsalondc/" target="_blank" aria-label="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+    </a>
+    <a href="https://www.yelp.com/biz/imaj-hair-salon-washington" target="_blank" aria-label="Yelp">
+      <svg viewBox="0 0 24 24"><path d="M20.16 12.73l-4.703 1.14c-.44.107-.84-.29-.79-.74l.61-5.44c.07-.62.74-.94 1.24-.57 1.75 1.28 3.04 3.2 3.54 5.4.1.44-.4.1-.4.1zM12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm5.677 14.017c-.303.688-.767 1.234-1.485 1.54-.72.307-1.45.24-2.11-.1-.42-.22-.79-.52-1.15-.84l-.53-.48c-.33-.29-.77-.22-1.01.12-.23.34-.17.79.14 1.06l.5.44c.18.16.22.43.08.63-.15.21-.43.27-.65.14l-1.56-.88c-.22-.12-.3-.4-.19-.63.11-.22.38-.31.6-.21.19.09.41.04.55-.12.22-.27.17-.67-.12-.88l-.83-.6c-.38-.27-.47-.79-.21-1.18.27-.38.79-.47 1.18-.2l.91.66c.32.23.77.16 1-.15.24-.32.17-.77-.15-1l-2.71-2c-.38-.28-.47-.8-.19-1.18.28-.38.8-.47 1.18-.19l1.45 1.07c.31.23.75.17.99-.14.24-.32.17-.77-.15-1.01L8.67 8.39c-.36-.27-.45-.77-.19-1.14.26-.37.77-.46 1.13-.2l3.19 2.27c.32.23.76.16 1-.15.24-.32.17-.77-.15-1.01l-.86-.64c-.36-.27-.45-.77-.19-1.14.27-.38.8-.47 1.18-.2l2.03 1.49c1.03.76 1.73 1.82 2.02 3.04.29 1.22.13 2.49-.36 3.57z"/></svg>
+    </a>
+  </div>
+  <p class="footer-copy">© 2025 Imaj Hair Salon · Washington, DC</p>
+</footer>
+
+<script>
+// ── Nav scroll solid ──────────────────────────────
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
+
+// ── Hamburger / mobile menu ───────────────────────
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  const open = hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open', open);
+  mobileMenu.setAttribute('aria-hidden', !open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+document.querySelectorAll('.mob-link, .mob-call').forEach(el => {
+  el.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  });
+});
+
+// ── Service tabs ──────────────────────────────────
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.service-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ── Generic scroll reveal ─────────────────────────
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// ── Contact form ──────────────────────────────────
+function handleSubmit() {
+  const fields = ['fname','lname','email','message'];
+  const allFilled = fields.every(id => document.getElementById(id).value.trim());
+  if (!allFilled) {
+    alert('Please fill in your name, email, and message.');
+    return;
+  }
+  document.getElementById('form-success').style.display = 'block';
+  [...fields, 'phone'].forEach(id => document.getElementById(id).value = '');
+}
+</script>
+</body>
+</html>
